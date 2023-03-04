@@ -23,11 +23,12 @@ public class UserController {
     }
 
 
-
+    //分页
     @RequestMapping("findallbypage")
-    public PageInfo<Users> findAllByPage(Integer pageNum,Integer pageSize){
+    public PageInfo<Users> findAllByPage(Integer pageNo,Integer pageSize){
+
+        PageHelper.startPage(pageNo,pageSize);
         List<Users> allUsers = userService.findAll();
-        PageHelper.startPage(pageNum,pageSize);
         PageInfo<Users> pageInfo=new PageInfo<>(allUsers);
         return pageInfo;
     }
